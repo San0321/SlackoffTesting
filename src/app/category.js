@@ -65,7 +65,7 @@ export default class Category extends Component {
             categories={this.state.id}
           />
         ))}
-        <input type="text" ref="category" onChange={this.addCateoryChange.bind()} placeholder="Category" />
+        <input type="text" ref="category" onChange={this.addCateoryChange.bind(this)} placeholder="Category" />
         <button id="addCategoryButton" name="add" onClick={this.addCategoryClick.bind(this)}>
           +
         </button>

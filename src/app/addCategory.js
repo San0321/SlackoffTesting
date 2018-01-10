@@ -11,15 +11,29 @@ export default class Category extends React.Component {
   */
 
   render() {
-    let idName = 'erase_' + this.props.name;
+    let idForDelete = 'erase_' + this.props.name;
+    let refForPercentage = 'percentage_' + this.props.name;
+    let refForGrade = 'grade_' + this.props.name;
     return (
       <div>
-        <button id={idName} onClick={() => this.props.deleteButton(this.props.name)}>
+        <button id={idForDelete} onClick={() => this.props.deleteButton(this.props.name)}>
           -
         </button>
         <label>{this.props.name}</label>
-        <input type="text" id="portion" onChange={this.handleChange} placeholder="Nothing to see rn" />
-        <input type="text" id="grade" onChange={this.handleChange} placeholder="Nothing to see rn" />
+        <input
+          type="text"
+          id="portion"
+          ref={refForPercentage}
+          onChange={() => this.props.percentage(this)}
+          placeholder="Percentage (without the symbol)"
+        />
+        <input
+          type="text"
+          id="grade"
+          ref={refForGrade}
+          onChange={() => this.props.grade(this)}
+          placeholder="My Grade"
+        />
       </div>
     );
   }

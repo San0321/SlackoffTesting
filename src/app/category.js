@@ -8,9 +8,9 @@ export default class Category extends Component {
     this.state = {
       id: ['Participation', 'Homework', 'Midterm', 'Final'],
       portion: [0, 0, 0, 0],
-      grade: [0, 0, 0, 0]
+      grade: [0, 0, 0, 0],
+      result: ""
     };
-    var result = 'result';
   }
 
   handleClick(e) {
@@ -88,24 +88,26 @@ export default class Category extends Component {
   }
 
   submitCalc() {
+    this.state.result = "";
+    let temp = 0.0;
     for (let i = 0; i < this.state.id.length; i++) {
-      result += this.state.id[i];
-      result += ' : ';
-      result += this.state.portion[i] * 0.01 * this.state.grade[i];
-      result += '%';
-    }
-    let temp = 0;
-    for (let j = 0; j < this.state.id.length; j++) {
-      temp = this.state.portion[i] * 0.01 * this.state.grade[i];
-    }
-    result += temp;
+      let perGrade = this.state.portion[i] * 0.01 * this.state.grade[i];
+      this.state.result += this.state.id[i];
+      this.state.result += ' : ';
+      this.state.result += perGrade;
+      this.state.result += '% ';
+      temp+=perGrade;
+    } 
+    this.state.result += "Your Overall grade is Currently " + temp + "%" ;
+    debugger;
+
     /*
       Participation : %
       HomeWork : %
       Midterm : %
       Overall : %
      */
-    debugger;
+    this.setState(this.state);
   }
 
   render() {
@@ -127,9 +129,9 @@ export default class Category extends Component {
           +
         </button>
         <button id="submitButton" name="submit" onClick={this.submitCalc.bind(this)}>
-          Submit
+          Calculate
         </button>
-        <p>{this.result}</p>
+        <p>{this.state.result}</p>
       </div>
     );
   }

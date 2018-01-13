@@ -12,6 +12,10 @@ export default class Category extends Component {
       result: ""
     };
   }
+  componentDidMount() {
+    console.log("HELLO");
+    ReactModalLogin = require('react-modal-login');
+  }
 
   handleClick(e) {
     let inputValue = this.state.value;

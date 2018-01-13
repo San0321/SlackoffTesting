@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import Inputthis from './inputField';
 import Category from './category';
-//import Login from './login';
+import Login from './login';
 
 export default class App extends Component {
   render() {
@@ -17,6 +17,7 @@ export default class App extends Component {
           <Category/>
         </div>
         <div>
+          <Login />
         </div>
         <div className= "result">
         </div>

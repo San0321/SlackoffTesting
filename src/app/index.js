@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import Inputthis from './inputField';
 import Category from './category';
-import Login from './login';
+import Popup from './modal';
 
 export default class App extends Component {
   render() {
@@ -10,17 +10,16 @@ export default class App extends Component {
         <div className="sk-title">
           <h1>How Much Can I Slack Off?</h1>
         </div>
-        <div className = "sk-range">
-          <Inputthis/>
+        <div className="sk-range">
+          <Inputthis />
         </div>
-        <div className= "category">
-          <Category/>
+        <div className="category">
+          <Category />
         </div>
         <div>
-          <Login />
+          <Popup />
         </div>
-        <div className= "result">
-        </div>
+        <div className="result" />
       </div>
     );
   }

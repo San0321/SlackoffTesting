@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-export default class Login extends Component {
+export default class SignUp extends Component {
   // get initalState
   constructor() {
     super();
@@ -13,7 +13,7 @@ export default class Login extends Component {
         <input type="text" id="id" />
         <label>Password</label>
         <input type="text" id="password" />
-        <button>Login</button>
+        <button>Sign Up</button>
       </div>
     );
   }

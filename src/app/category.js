@@ -9,12 +9,8 @@ export default class Category extends Component {
       id: ['Participation', 'Homework', 'Midterm', 'Final'],
       portion: [0, 0, 0, 0],
       grade: [0, 0, 0, 0],
-      result: ""
+      result: ''
     };
-  }
-  componentDidMount() {
-    console.log("HELLO");
-    ReactModalLogin = require('react-modal-login');
   }
 
   handleClick(e) {
@@ -92,7 +88,7 @@ export default class Category extends Component {
   }
 
   submitCalc() {
-    this.state.result = "";
+    this.state.result = '';
     let temp = 0.0;
     for (let i = 0; i < this.state.id.length; i++) {
       let perGrade = this.state.portion[i] * 0.01 * this.state.grade[i];
@@ -100,9 +96,9 @@ export default class Category extends Component {
       this.state.result += ' : ';
       this.state.result += perGrade;
       this.state.result += '% ';
-      temp+=perGrade;
-    } 
-    this.state.result += "Your Overall grade is Currently " + temp + "%" ;
+      temp += perGrade;
+    }
+    this.state.result += 'Your Overall grade is Currently ' + temp + '%';
     debugger;
 
     /*

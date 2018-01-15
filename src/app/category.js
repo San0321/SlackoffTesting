@@ -13,8 +13,22 @@ export default class Category extends Component {
       result: ''
     };
   }
-  componentDidMount() {
-    debugger;
+  componentDidMount() {}
+  componentDidUpdate() {
+    let userId = this.props.emailAccount.user.split('@')[0];
+    let checkData = function(work, userId) {
+      return firebase
+        .database()
+        .ref('/users/' + userId)
+        .once('value')
+        .then(function(snapshot) {
+          work.setState(snapshot.val());
+        });
+    };
+    if (this.props.emailAccount.initial) {
+      checkData(this, userId);
+      this.props.emailAccount.initial = false;
+    }
   }
 
   handleClick(e) {

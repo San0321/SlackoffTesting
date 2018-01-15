@@ -8,12 +8,13 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: null
+      user: null,
+      initial: false
     };
   }
 
-  dataTransfer(email) {
-    this.setState({ email: email });
+  dataTransfer(loginInfo) {
+    this.setState({ user: loginInfo.user, initial: loginInfo.initial });
     debugger;
   }
 
@@ -27,7 +28,7 @@ export default class App extends Component {
           <Inputthis />
         </div>
         <div className="category">
-          <Category datatransfer={this.dataTransfer.bind(this)} emailAccount={this.state.email} />
+          <Category datatransfer={this.dataTransfer.bind(this)} emailAccount={this.state} />
         </div>
         <div>
           <Popup datatransfer={this.dataTransfer.bind(this)} />

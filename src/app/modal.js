@@ -192,7 +192,7 @@ export default class Popup extends Component {
         .then(function(userEmail) {
           // assign user email to the state
           debugger;
-          work.props.datatransfer(userEmail);
+          work.props.datatransfer({ user: userEmail, initial: true });
           work.setState({ modalIsOpen: false, user: userEmail });
           debugger;
         })

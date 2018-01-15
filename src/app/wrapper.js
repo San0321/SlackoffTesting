@@ -20,13 +20,15 @@ export default class Wrapper extends Component {
     if (this.props.signIn) {
       return (
         <div>
-          <Login />
+          <h2>Sign-In</h2>
+          <Login checking={this.props.checking} />
         </div>
       );
     } else {
       return (
         <div>
-          <SignUp />
+          <h2>Sign-Up</h2>
+          <SignUp checking={this.props.checking} />
         </div>
       );
     }

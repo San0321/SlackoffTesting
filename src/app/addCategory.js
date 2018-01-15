@@ -22,14 +22,14 @@ export default class Category extends React.Component {
         <label>{this.props.name}</label>
         <input
           type="text"
-          id="portion"
+          id={refForPercentage}
           ref={refForPercentage}
           onChange={() => this.props.percentage(this)}
           placeholder="Percentage (without the symbol)"
         />
         <input
           type="text"
-          id="grade"
+          id={refForGrade}
           ref={refForGrade}
           onChange={() => this.props.grade(this)}
           placeholder="My Grade"

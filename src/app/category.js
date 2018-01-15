@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import AddCategory from './addCategory';
+import firebase from '../firebase.js';
 
 export default class Category extends Component {
   // get initalState
@@ -11,6 +12,9 @@ export default class Category extends Component {
       grade: [0, 0, 0, 0],
       result: ''
     };
+  }
+  componentDidMount() {
+    debugger;
   }
 
   handleClick(e) {
@@ -55,6 +59,8 @@ export default class Category extends Component {
         this.state.id.push(categoryName);
         this.state.portion.push(0);
         this.state.grade.push(0);
+        // reset the input field
+        this.refs.category.value = '';
         this.setState(this.state);
       }
     }
@@ -87,7 +93,8 @@ export default class Category extends Component {
     this.setState(this.state);
   }
 
-  submitCalc() {
+  submitCalc(e) {
+    e.preventDefault();
     this.state.result = '';
     let temp = 0.0;
     for (let i = 0; i < this.state.id.length; i++) {
@@ -99,7 +106,6 @@ export default class Category extends Component {
       temp += perGrade;
     }
     this.state.result += 'Your Overall grade is Currently ' + temp + '%';
-    debugger;
 
     /*
       Participation : %
@@ -108,6 +114,21 @@ export default class Category extends Component {
       Overall : %
      */
     this.setState(this.state);
+  }
+
+  saveGrade() {
+    let toBeSaved = this.state;
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        debugger;
+        firebase
+          .database()
+          .ref('users/' + firebase.auth().currentUser.email.split('@')[0])
+          .set(toBeSaved);
+      } else {
+        // No user is signed in.
+      }
+    });
   }
 
   render() {
@@ -132,6 +153,7 @@ export default class Category extends Component {
           Calculate
         </button>
         <p>{this.state.result}</p>
+        <button onClick={this.saveGrade.bind(this)}>Save</button>
       </div>
     );
   }

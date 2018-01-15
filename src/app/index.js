@@ -2,8 +2,21 @@ import React, { Component, PropTypes } from 'react';
 import Inputthis from './inputField';
 import Category from './category';
 import Popup from './modal';
+import firebase from '../firebase';
 
 export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: null
+    };
+  }
+
+  dataTransfer(email) {
+    this.setState({ email: email });
+    debugger;
+  }
+
   render() {
     return (
       <div id="final">
@@ -14,10 +27,10 @@ export default class App extends Component {
           <Inputthis />
         </div>
         <div className="category">
-          <Category />
+          <Category datatransfer={this.dataTransfer.bind(this)} emailAccount={this.state.email} />
         </div>
         <div>
-          <Popup />
+          <Popup datatransfer={this.dataTransfer.bind(this)} />
         </div>
         <div className="result" />
       </div>

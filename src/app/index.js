@@ -21,20 +21,22 @@ export default class App extends Component {
 
   render() {
     return (
-      <div id="final">
-        <div className="sk-title">
-          <h1>How Much Can I Slack Off?</h1>
+      <div className="container" id="final">
+        <div className="jumbotron">
+          <div className="page-header">
+            <h1 className="text-center">How Much Can I Slack Off?</h1>
+          </div>
+          <div className="sk-range">
+            <Inputthis />
+          </div>
+          <span className="container text-justify">
+            <Category datatransfer={this.dataTransfer.bind(this)} emailAccount={this.state} />
+          </span>
+          <div>
+            <Popup className="text-center" datatransfer={this.dataTransfer.bind(this)} />
+          </div>
+          <div className="text-center" />
         </div>
-        <div className="sk-range">
-          <Inputthis />
-        </div>
-        <div className="category">
-          <Category datatransfer={this.dataTransfer.bind(this)} emailAccount={this.state} />
-        </div>
-        <div>
-          <Popup datatransfer={this.dataTransfer.bind(this)} />
-        </div>
-        <div className="result" />
       </div>
     );
   }

@@ -49,9 +49,11 @@ export default class Category extends React.Component {
     let refForGrade = 'grade_' + this.props.name;
     return (
       <div>
-        <button id={idForDelete} onClick={() => this.props.deleteButton(this.props.name)}>
-          -
-        </button>
+        <span>
+          <button className="btn btn-danger btn-sm" id={idForDelete} onClick={() => this.props.deleteButton(this.props.name)}>
+            <span className="glyphicon glyphicon-minus"></span>
+          </button>
+        </span>
         <label>{this.props.name}</label>
         <input
           type="text"

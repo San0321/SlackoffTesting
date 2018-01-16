@@ -203,13 +203,13 @@ export default class Popup extends Component {
 
   render() {
     return (
-      <div>
+      <div className="btn-group btn-group-ln" role ="group">
         {this.state.user ? (
-          <button onClick={this.logOut.bind(this)}>Log Out</button>
+          <button className="btn btn-default" onClick={this.logOut.bind(this)}>Log Out</button>
         ) : (
           <div>
-            <button onClick={this.openSignIn.bind(this)}>Sign In</button>
-            <button onClick={this.openSignUp.bind(this)}>Sign Up</button>
+            <button className="btn btn-default" onClick={this.openSignIn.bind(this)}>Sign In</button>
+            <button className="btn btn-default" onClick={this.openSignUp.bind(this)}>Sign Up</button>
             <Modal
               id="Login"
               isOpen={this.state.modalIsOpen}

@@ -89,7 +89,12 @@ export default class Category extends Component {
   deleteCategory(name) {
     // it goes here but idk
     //debugger;
-    this.state.id.splice(this.state.id.indexOf(name), 1);
+    let index = this.state.id.indexOf(name);
+
+    // delete the information from the state
+    this.state.id.splice(index, 1);
+    this.state.portion.splice(index,1);
+    this.state.grade.splice(index,1);
     //console.log(JSON.stringify(name));
     //this.state.id.splice(this.state.id.indexOf(name), 1);
     this.setState(this.state);
@@ -120,8 +125,8 @@ export default class Category extends Component {
         alert('Need to Type Something');
       } else {
         this.state.id.push(categoryName);
-        this.state.portion.push(0);
-        this.state.grade.push(0);
+        this.state.portion.push("");
+        this.state.grade.push("");
         // reset the input field
         this.refs.category.value = '';
         this.setState(this.state);
@@ -211,14 +216,14 @@ export default class Category extends Component {
           />
         ))}
         <input type="text" ref="category" onChange={this.addCateoryChange.bind(this)} placeholder="Category" />
-        <button id="addCategoryButton" name="add" onClick={this.addCategoryClick.bind(this)}>
-          +
+        <button className="btn btn-success btn-sm" id="addCategoryButton" name="add" onClick={this.addCategoryClick.bind(this)}>
+          <span className="glyphicon glyphicon-plus"></span>
         </button>
-        <button id="submitButton" name="submit" onClick={this.submitCalc.bind(this)}>
+        <button className="btn btn-default" id="submitButton" name="submit" onClick={this.submitCalc.bind(this)}>
           Calculate
         </button>
         <p>{this.state.result}</p>
-        <button onClick={this.saveGrade.bind(this)}>Save</button>
+        <button className="btn btn-info" onClick={this.saveGrade.bind(this)}>Save</button>
       </div>
     );
   }

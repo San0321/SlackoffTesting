@@ -9,12 +9,13 @@ export default class App extends Component {
     super(props);
     this.state = {
       user: null,
-      initial: false
+      initial: false,
+      reset: false
     };
   }
 
   dataTransfer(loginInfo) {
-    this.setState({ user: loginInfo.user, initial: loginInfo.initial });
+    this.setState({ user: loginInfo.user, initial: loginInfo.initial, reset: loginInfo.reset });
     debugger;
   }
 

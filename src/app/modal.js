@@ -123,6 +123,7 @@ export default class Popup extends Component {
       logOutPromise
         .then(function() {
           // assign empty user to the state
+          work.props.datatransfer({ reset: true });
           work.setState({ modalIsOpen: false, user: null });
         })
         .catch(function(error) {
@@ -191,10 +192,9 @@ export default class Popup extends Component {
       loginPromise
         .then(function(userEmail) {
           // assign user email to the state
-          debugger;
-          work.props.datatransfer({ user: userEmail, initial: true });
+          // if it was the first page access, get the data from the database and close the modal
+          work.props.datatransfer({ user: userEmail, initial: true, reset: false });
           work.setState({ modalIsOpen: false, user: userEmail });
-          debugger;
         })
         .catch(function(error) {});
     };

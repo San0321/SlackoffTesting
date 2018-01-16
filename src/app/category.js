@@ -10,24 +10,73 @@ export default class Category extends Component {
       id: ['Participation', 'Homework', 'Midterm', 'Final'],
       portion: [0, 0, 0, 0],
       grade: [0, 0, 0, 0],
-      result: ''
+      result: '',
+      loaded: false
     };
   }
-  componentDidMount() {}
-  componentDidUpdate() {
-    let userId = this.props.emailAccount.user.split('@')[0];
-    let checkData = function(work, userId) {
-      return firebase
-        .database()
-        .ref('/users/' + userId)
-        .once('value')
-        .then(function(snapshot) {
-          work.setState(snapshot.val());
+
+  componentDidMount() {
+    var self = this;
+    let loginPromise = new Promise(function(resolve, reject) {
+      firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+          // pass it to then
+          resolve(firebase.auth().currentUser.email.split('@')[0]);
+        } else {
+          // No user is signed in.
+          reject();
+        }
+      });
+    });
+    let setUser = function() {
+      loginPromise
+        .then(function(userId) {
+          // if the user is logged in, retrieve the existing data
+          firebase
+            .database()
+            .ref('/users/' + userId)
+            .once('value')
+            .then(function(snapshot) {
+              let data = snapshot.val();
+              data.loaded = true;
+              self.setState(data);
+            });
+        })
+        .catch(function(error) {
+          console.log(error);
         });
     };
-    if (this.props.emailAccount.initial) {
-      checkData(this, userId);
-      this.props.emailAccount.initial = false;
+    setUser();
+  }
+
+  componentDidUpdate() {
+    if (this.props.emailAccount.user != null) {
+      let userId = this.props.emailAccount.user.split('@')[0];
+      let checkData = function(work, userId) {
+        firebase
+          .database()
+          .ref('/users/' + userId)
+          .once('value')
+          .then(function(snapshot) {
+            let data = snapshot.val();
+            data.loaded = true;
+            work.setState(data);
+          });
+      };
+      if (this.props.emailAccount.initial) {
+        checkData(this, userId);
+        this.props.emailAccount.initial = false;
+      }
+    }
+    if (this.props.emailAccount.reset) {
+      this.setState({
+        id: ['Participation', 'Homework', 'Midterm', 'Final'],
+        portion: [0, 0, 0, 0],
+        grade: [0, 0, 0, 0],
+        result: '',
+        loaded: false
+      });
+      this.props.emailAccount.reset = false;
     }
   }
 
@@ -134,13 +183,13 @@ export default class Category extends Component {
     let toBeSaved = this.state;
     firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
-        debugger;
         firebase
           .database()
           .ref('users/' + firebase.auth().currentUser.email.split('@')[0])
           .set(toBeSaved);
       } else {
         // No user is signed in.
+        alert('Need to Sign in to save data');
       }
     });
   }
@@ -157,6 +206,8 @@ export default class Category extends Component {
             percentage={this.percentageChange.bind(this)}
             grade={this.gradeChange.bind(this)}
             categories={this.state.id}
+            data={this.state}
+            reset={this.props.emailAccount.reset}
           />
         ))}
         <input type="text" ref="category" onChange={this.addCateoryChange.bind(this)} placeholder="Category" />

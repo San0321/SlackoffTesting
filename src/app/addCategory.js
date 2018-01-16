@@ -9,6 +9,39 @@ export default class Category extends React.Component {
     this.props.deleteCategory('12');
   }
   */
+  componentWillReceiveProps() {
+    console.log('When I am being called?');
+  }
+  componentDidUpdate() {
+    if (this.props.data.loaded) {
+      // for (let i = 0; i < this.props.categories.length; i++) {
+      // let this.refs
+      console.log(this.props.name);
+      let percentage = this.refs['percentage_' + this.props.name];
+      let grade = this.refs['grade_' + this.props.name];
+      percentage.value = this.props.data.portion[this.props.categories.indexOf(this.props.name)];
+      grade.value = this.props.data.grade[this.props.categories.indexOf(this.props.name)];
+      //    }
+    }
+    if (this.props.reset) {
+      let percentage = this.refs['percentage_' + this.props.name];
+      let grade = this.refs['grade_' + this.props.name];
+      percentage.value = '';
+      grade.value = '';
+    }
+  }
+  componentDidMount() {
+    if (this.props.data.loaded) {
+      // for (let i = 0; i < this.props.categories.length; i++) {
+      // let this.refs
+      console.log(this.props.name);
+      let percentage = this.refs['percentage_' + this.props.name];
+      let grade = this.refs['grade_' + this.props.name];
+      percentage.value = this.props.data.portion[this.props.categories.indexOf(this.props.name)];
+      grade.value = this.props.data.grade[this.props.categories.indexOf(this.props.name)];
+      //    }
+    }
+  }
 
   render() {
     let idForDelete = 'erase_' + this.props.name;

@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import firebase from '../firebase.js';
 
 export default class SignUp extends Component {
   // get initalState

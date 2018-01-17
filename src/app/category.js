@@ -226,7 +226,7 @@ export default class Category extends Component {
         </button>
       </div>
         <p>{this.state.result}</p>
-        <button className="btn btn-info text-center" onClick={this.saveGrade.bind(this)}>Save</button>
+        <button className="btn btn-outline-info text-center btn-lg" onClick={this.saveGrade.bind(this)}>Save</button>
       </div>
     );
   }

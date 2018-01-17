@@ -22364,7 +22364,7 @@
 	          ),
 	          _react2.default.createElement(
 	            'button',
-	            { className: 'btn btn-info text-center', onClick: this.saveGrade.bind(this) },
+	            { className: 'btn btn-outline-info text-center btn-lg', onClick: this.saveGrade.bind(this) },
 	            'Save'
 	          )
 	        )

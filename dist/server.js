@@ -83,8 +83,9 @@ module.exports =
 	  }));
 	});
 
-	server.listen(8080);
-	console.log('listening');
+	server.listen(process.env.PORT || 8080, function () {
+	  console.log('listening on ' + process.env.PORT);
+	});
 
 /***/ }),
 /* 1 */
@@ -591,7 +592,7 @@ module.exports =
 	          ),
 	          _react2.default.createElement(
 	            'button',
-	            { className: 'btn btn-info text-center', onClick: this.saveGrade.bind(this) },
+	            { className: 'btn btn-outline-info text-center btn-lg', onClick: this.saveGrade.bind(this) },
 	            'Save'
 	          )
 	        )

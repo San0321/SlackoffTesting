@@ -20,5 +20,6 @@ server.get('/', (req, res) => {
   }));
 });
 
-server.listen(80);
+var PORT = process.env.PORT || 8080;
+server.listen(PORT);
 console.log('listening');

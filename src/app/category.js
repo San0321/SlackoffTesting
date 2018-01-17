@@ -203,7 +203,7 @@ export default class Category extends Component {
     return (
       // initial state
       // css row
-      <div>
+      <div className="row">
         {this.state.id.map(item => (
           <AddCategory
             key={item}

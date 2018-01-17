@@ -538,6 +538,7 @@ module.exports =
 	    key: 'saveGrade',
 	    value: function saveGrade() {
 	      var toBeSaved = this.state;
+	      toBeSaved.result = "";
 	      _firebase2.default.auth().onAuthStateChanged(function (user) {
 	        if (user) {
 	          _firebase2.default.database().ref('users/' + _firebase2.default.auth().currentUser.email.split('@')[0]).set(toBeSaved);
@@ -554,10 +555,9 @@ module.exports =
 
 	      return (
 	        // initial state
-	        // css row
 	        _react2.default.createElement(
 	          'div',
-	          null,
+	          { className: 'row' },
 	          this.state.id.map(function (item) {
 	            return _react2.default.createElement(_addCategory2.default, {
 	              key: item,
@@ -572,28 +572,32 @@ module.exports =
 	          }),
 	          _react2.default.createElement(
 	            'div',
-	            { className: 'text-center' },
-	            _react2.default.createElement('input', { type: 'text', ref: 'category', onChange: this.addCateoryChange.bind(this), placeholder: 'Category' }),
+	            { className: 'row' },
+	            _react2.default.createElement('input', { className: 'col-lg-10', type: 'text', ref: 'category', onChange: this.addCateoryChange.bind(this), placeholder: 'Category' }),
 	            _react2.default.createElement(
 	              'button',
-	              { className: 'btn btn-success btn-sm', id: 'addCategoryButton', name: 'add', onClick: this.addCategoryClick.bind(this) },
+	              { className: 'btn btn-success btn-sm col-lg-1', id: 'addCategoryButton', name: 'add', onClick: this.addCategoryClick.bind(this) },
 	              _react2.default.createElement('span', { className: 'glyphicon glyphicon-plus' })
 	            ),
 	            _react2.default.createElement(
 	              'button',
-	              { className: 'btn btn-default', id: 'submitButton', name: 'submit', onClick: this.submitCalc.bind(this) },
+	              { className: 'btn btn-default col-lg-1', id: 'submitButton', name: 'submit', onClick: this.submitCalc.bind(this) },
 	              'Calculate'
 	            )
 	          ),
 	          _react2.default.createElement(
-	            'p',
-	            null,
-	            this.state.result
-	          ),
-	          _react2.default.createElement(
-	            'button',
-	            { className: 'btn btn-outline-info text-center btn-lg', onClick: this.saveGrade.bind(this) },
-	            'Save'
+	            'div',
+	            { className: 'row' },
+	            _react2.default.createElement(
+	              'p',
+	              { className: 'row' },
+	              this.state.result
+	            ),
+	            _react2.default.createElement(
+	              'button',
+	              { className: 'btn btn-outline-info text-center btn-block', onClick: this.saveGrade.bind(this) },
+	              'Save'
+	            )
 	          )
 	        )
 	      );
@@ -717,14 +721,14 @@ module.exports =
 	        { className: 'row' },
 	        _react2.default.createElement(
 	          'button',
-	          { className: 'btn btn-danger btn-sm col-lg-1', id: idForDelete, onClick: function onClick() {
+	          { className: 'btn btn-danger btn-sm col-lg-1 col-xs-1', id: idForDelete, onClick: function onClick() {
 	              return _this2.props.deleteButton(_this2.props.name);
 	            } },
 	          _react2.default.createElement('span', { className: 'glyphicon glyphicon-minus' })
 	        ),
 	        _react2.default.createElement(
 	          'label',
-	          { className: 'col-lg-5' },
+	          { className: 'col-lg-5 col-xs-5' },
 	          this.props.name
 	        ),
 	        _react2.default.createElement('input', {
@@ -735,7 +739,7 @@ module.exports =
 	            return _this2.props.percentage(_this2);
 	          },
 	          placeholder: 'Percentage (without the symbol)',
-	          className: 'col-lg-3'
+	          className: 'col-lg-3 col-xs-3'
 	        }),
 	        _react2.default.createElement('input', {
 	          type: 'text',
@@ -745,7 +749,7 @@ module.exports =
 	            return _this2.props.grade(_this2);
 	          },
 	          placeholder: 'My Grade',
-	          className: 'col-lg-3'
+	          className: 'col-lg-3 col-xs-3'
 	        })
 	      );
 	    }
@@ -1063,21 +1067,20 @@ module.exports =
 	              contentLabel: 'Example Modal'
 	            },
 	            _react2.default.createElement(
-	              'button',
-	              { onClick: this.openSignIn.bind(this) },
-	              ' Sign-In Tab '
+	              'div',
+	              { className: 'btn-group btn-group-toggle text-center' },
+	              _react2.default.createElement(
+	                'button',
+	                { className: 'btn btn-secondary', type: true, onClick: this.openSignIn.bind(this) },
+	                ' Sign-In Tab '
+	              ),
+	              _react2.default.createElement(
+	                'button',
+	                { className: 'btn btn-secondary', onClick: this.openSignUp.bind(this) },
+	                ' Sign-Up Tab '
+	              )
 	            ),
-	            _react2.default.createElement(
-	              'button',
-	              { onClick: this.openSignUp.bind(this) },
-	              ' Sign-Up Tab '
-	            ),
-	            _react2.default.createElement(_wrapper2.default, { signIn: this.state.signIn, checking: this.checkLogin.bind(this) }),
-	            _react2.default.createElement(
-	              'button',
-	              { onClick: this.closeModal },
-	              'close'
-	            )
+	            _react2.default.createElement(_wrapper2.default, { signIn: this.state.signIn, checking: this.checkLogin.bind(this) })
 	          )
 	        )
 	      );
@@ -1088,7 +1091,7 @@ module.exports =
 	}(_react.Component);
 
 	/*
-
+	<button onClick={this.closeModal}>close</button>
 	 */
 
 
@@ -1349,23 +1352,32 @@ module.exports =
 	          'form',
 	          { onSubmit: this.handleSubmit.bind(this) },
 	          _react2.default.createElement(
-	            'label',
-	            null,
-	            'ID',
-	            _react2.default.createElement('input', { type: 'text', id: 'id', onChange: this.handleChangeId.bind(this), value: this.state.username })
+	            'div',
+	            { className: 'form-group' },
+	            _react2.default.createElement(
+	              'label',
+	              null,
+	              'Email address'
+	            ),
+	            _react2.default.createElement('input', { type: 'text', className: 'form-control', id: 'id', onChange: this.handleChangeId.bind(this), value: this.state.username })
 	          ),
 	          _react2.default.createElement(
-	            'label',
-	            null,
-	            'Password',
+	            'div',
+	            { className: 'form-group' },
+	            _react2.default.createElement(
+	              'label',
+	              null,
+	              'Password'
+	            ),
 	            _react2.default.createElement('input', {
 	              type: 'password',
 	              id: 'password',
 	              onChange: this.handleChangePw.bind(this),
-	              value: this.state.password
+	              value: this.state.password,
+	              className: 'form-control'
 	            })
 	          ),
-	          _react2.default.createElement('input', { type: 'submit', value: 'Login' })
+	          _react2.default.createElement('input', { type: 'submit', className: 'btn btn-default btn-block', value: 'Login' })
 	        )
 	      );
 	    }
@@ -1475,23 +1487,32 @@ module.exports =
 	          'form',
 	          { onSubmit: this.handleSubmit },
 	          _react2.default.createElement(
-	            'label',
-	            null,
-	            'ID',
-	            _react2.default.createElement('input', { type: 'text', id: 'id', onChange: this.handleChangeId.bind(this), value: this.state.username })
+	            'div',
+	            { className: 'form-group' },
+	            _react2.default.createElement(
+	              'label',
+	              null,
+	              'Email address'
+	            ),
+	            _react2.default.createElement('input', { type: 'text', id: 'id', className: 'form-control', onChange: this.handleChangeId.bind(this), value: this.state.username })
 	          ),
 	          _react2.default.createElement(
-	            'label',
-	            null,
-	            'Password',
+	            'div',
+	            { className: 'form-group' },
+	            _react2.default.createElement(
+	              'label',
+	              null,
+	              'Password'
+	            ),
 	            _react2.default.createElement('input', {
 	              type: 'password',
 	              id: 'password',
 	              onChange: this.handleChangePw.bind(this),
-	              value: this.state.password
+	              value: this.state.password,
+	              className: 'form-control'
 	            })
 	          ),
-	          _react2.default.createElement('input', { type: 'submit', value: 'Sign Up' })
+	          _react2.default.createElement('input', { type: 'submit', value: 'Sign Up', className: 'btn btn-default btn-block' })
 	        )
 	      );
 	    }
@@ -1517,7 +1538,7 @@ module.exports =
 	      title = _ref.title,
 	      initialState = _ref.initialState;
 
-	  return "\n    <!DOCTYPE html>\n    <html>\n      <head>\n        <script src=\"https://www.gstatic.com/firebasejs/4.8.1/firebase.js\"></script>\n        <script>\n          // Initialize Firebase\n          var config = {\n            apiKey: \"AIzaSyDBeT6tORtwV6FE-6tN9S4t13j4m8eTQ-k\",\n            authDomain: \"slackoff-37e72.firebaseapp.com\",\n            databaseURL: \"https://slackoff-37e72.firebaseio.com\",\n            projectId: \"slackoff-37e72\",\n            storageBucket: \"slackoff-37e72.appspot.com\",\n            messagingSenderId: \"678929575073\"\n          };\n          firebase.initializeApp(config);\n        </script>\n        <script>window.__APP_INITIAL_STATE__ = " + initialState + "</script>\n        <title>" + title + "</title>\n        <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\">\n        <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js\"></script>\n        <script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\"></script>\n      </head>\n      \n      <body>\n        <div class=\"container\" id=\"root\">" + body + "</div>\n      </body>\n      \n      <script src=\"/assets/bundle.js\"></script>\n    </html>\n  ";
+	  return "\n    <!DOCTYPE html>\n    <html>\n      <head>\n        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n        <script>window.__APP_INITIAL_STATE__ = " + initialState + "</script>\n        <title>" + title + "</title>\n        <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\">\n        <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js\"></script>\n        <script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\"></script>\n      </head>\n      \n      <body>\n        <div class=\"container\" id=\"root\">" + body + "</div>\n      </body>\n      \n      <script src=\"/assets/bundle.js\"></script>\n    </html>\n  ";
 	};
 
 /***/ })

@@ -22310,6 +22310,7 @@
 	    key: 'saveGrade',
 	    value: function saveGrade() {
 	      var toBeSaved = this.state;
+	      toBeSaved.result = "";
 	      _firebase2.default.auth().onAuthStateChanged(function (user) {
 	        if (user) {
 	          _firebase2.default.database().ref('users/' + _firebase2.default.auth().currentUser.email.split('@')[0]).set(toBeSaved);
@@ -22326,10 +22327,9 @@
 
 	      return (
 	        // initial state
-	        // css row
 	        _react2.default.createElement(
 	          'div',
-	          null,
+	          { className: 'row' },
 	          this.state.id.map(function (item) {
 	            return _react2.default.createElement(_addCategory2.default, {
 	              key: item,
@@ -22344,28 +22344,32 @@
 	          }),
 	          _react2.default.createElement(
 	            'div',
-	            { className: 'text-center' },
-	            _react2.default.createElement('input', { type: 'text', ref: 'category', onChange: this.addCateoryChange.bind(this), placeholder: 'Category' }),
+	            { className: 'row' },
+	            _react2.default.createElement('input', { className: 'col-lg-10', type: 'text', ref: 'category', onChange: this.addCateoryChange.bind(this), placeholder: 'Category' }),
 	            _react2.default.createElement(
 	              'button',
-	              { className: 'btn btn-success btn-sm', id: 'addCategoryButton', name: 'add', onClick: this.addCategoryClick.bind(this) },
+	              { className: 'btn btn-success btn-sm col-lg-1', id: 'addCategoryButton', name: 'add', onClick: this.addCategoryClick.bind(this) },
 	              _react2.default.createElement('span', { className: 'glyphicon glyphicon-plus' })
 	            ),
 	            _react2.default.createElement(
 	              'button',
-	              { className: 'btn btn-default', id: 'submitButton', name: 'submit', onClick: this.submitCalc.bind(this) },
+	              { className: 'btn btn-default col-lg-1', id: 'submitButton', name: 'submit', onClick: this.submitCalc.bind(this) },
 	              'Calculate'
 	            )
 	          ),
 	          _react2.default.createElement(
-	            'p',
-	            null,
-	            this.state.result
-	          ),
-	          _react2.default.createElement(
-	            'button',
-	            { className: 'btn btn-outline-info text-center btn-lg', onClick: this.saveGrade.bind(this) },
-	            'Save'
+	            'div',
+	            { className: 'row' },
+	            _react2.default.createElement(
+	              'p',
+	              { className: 'row' },
+	              this.state.result
+	            ),
+	            _react2.default.createElement(
+	              'button',
+	              { className: 'btn btn-outline-info text-center btn-block', onClick: this.saveGrade.bind(this) },
+	              'Save'
+	            )
 	          )
 	        )
 	      );
@@ -22489,14 +22493,14 @@
 	        { className: 'row' },
 	        _react2.default.createElement(
 	          'button',
-	          { className: 'btn btn-danger btn-sm col-lg-1', id: idForDelete, onClick: function onClick() {
+	          { className: 'btn btn-danger btn-sm col-lg-1 col-xs-1', id: idForDelete, onClick: function onClick() {
 	              return _this2.props.deleteButton(_this2.props.name);
 	            } },
 	          _react2.default.createElement('span', { className: 'glyphicon glyphicon-minus' })
 	        ),
 	        _react2.default.createElement(
 	          'label',
-	          { className: 'col-lg-5' },
+	          { className: 'col-lg-5 col-xs-5' },
 	          this.props.name
 	        ),
 	        _react2.default.createElement('input', {
@@ -22507,7 +22511,7 @@
 	            return _this2.props.percentage(_this2);
 	          },
 	          placeholder: 'Percentage (without the symbol)',
-	          className: 'col-lg-3'
+	          className: 'col-lg-3 col-xs-3'
 	        }),
 	        _react2.default.createElement('input', {
 	          type: 'text',
@@ -22517,7 +22521,7 @@
 	            return _this2.props.grade(_this2);
 	          },
 	          placeholder: 'My Grade',
-	          className: 'col-lg-3'
+	          className: 'col-lg-3 col-xs-3'
 	        })
 	      );
 	    }
@@ -48572,21 +48576,20 @@
 	              contentLabel: 'Example Modal'
 	            },
 	            _react2.default.createElement(
-	              'button',
-	              { onClick: this.openSignIn.bind(this) },
-	              ' Sign-In Tab '
+	              'div',
+	              { className: 'btn-group btn-group-toggle text-center' },
+	              _react2.default.createElement(
+	                'button',
+	                { className: 'btn btn-secondary', type: true, onClick: this.openSignIn.bind(this) },
+	                ' Sign-In Tab '
+	              ),
+	              _react2.default.createElement(
+	                'button',
+	                { className: 'btn btn-secondary', onClick: this.openSignUp.bind(this) },
+	                ' Sign-Up Tab '
+	              )
 	            ),
-	            _react2.default.createElement(
-	              'button',
-	              { onClick: this.openSignUp.bind(this) },
-	              ' Sign-Up Tab '
-	            ),
-	            _react2.default.createElement(_wrapper2.default, { signIn: this.state.signIn, checking: this.checkLogin.bind(this) }),
-	            _react2.default.createElement(
-	              'button',
-	              { onClick: this.closeModal },
-	              'close'
-	            )
+	            _react2.default.createElement(_wrapper2.default, { signIn: this.state.signIn, checking: this.checkLogin.bind(this) })
 	          )
 	        )
 	      );
@@ -48597,7 +48600,7 @@
 	}(_react.Component);
 
 	/*
-
+	<button onClick={this.closeModal}>close</button>
 	 */
 
 
@@ -50150,23 +50153,32 @@
 	          'form',
 	          { onSubmit: this.handleSubmit.bind(this) },
 	          _react2.default.createElement(
-	            'label',
-	            null,
-	            'ID',
-	            _react2.default.createElement('input', { type: 'text', id: 'id', onChange: this.handleChangeId.bind(this), value: this.state.username })
+	            'div',
+	            { className: 'form-group' },
+	            _react2.default.createElement(
+	              'label',
+	              null,
+	              'Email address'
+	            ),
+	            _react2.default.createElement('input', { type: 'text', className: 'form-control', id: 'id', onChange: this.handleChangeId.bind(this), value: this.state.username })
 	          ),
 	          _react2.default.createElement(
-	            'label',
-	            null,
-	            'Password',
+	            'div',
+	            { className: 'form-group' },
+	            _react2.default.createElement(
+	              'label',
+	              null,
+	              'Password'
+	            ),
 	            _react2.default.createElement('input', {
 	              type: 'password',
 	              id: 'password',
 	              onChange: this.handleChangePw.bind(this),
-	              value: this.state.password
+	              value: this.state.password,
+	              className: 'form-control'
 	            })
 	          ),
-	          _react2.default.createElement('input', { type: 'submit', value: 'Login' })
+	          _react2.default.createElement('input', { type: 'submit', className: 'btn btn-default btn-block', value: 'Login' })
 	        )
 	      );
 	    }
@@ -50276,23 +50288,32 @@
 	          'form',
 	          { onSubmit: this.handleSubmit },
 	          _react2.default.createElement(
-	            'label',
-	            null,
-	            'ID',
-	            _react2.default.createElement('input', { type: 'text', id: 'id', onChange: this.handleChangeId.bind(this), value: this.state.username })
+	            'div',
+	            { className: 'form-group' },
+	            _react2.default.createElement(
+	              'label',
+	              null,
+	              'Email address'
+	            ),
+	            _react2.default.createElement('input', { type: 'text', id: 'id', className: 'form-control', onChange: this.handleChangeId.bind(this), value: this.state.username })
 	          ),
 	          _react2.default.createElement(
-	            'label',
-	            null,
-	            'Password',
+	            'div',
+	            { className: 'form-group' },
+	            _react2.default.createElement(
+	              'label',
+	              null,
+	              'Password'
+	            ),
 	            _react2.default.createElement('input', {
 	              type: 'password',
 	              id: 'password',
 	              onChange: this.handleChangePw.bind(this),
-	              value: this.state.password
+	              value: this.state.password,
+	              className: 'form-control'
 	            })
 	          ),
-	          _react2.default.createElement('input', { type: 'submit', value: 'Sign Up' })
+	          _react2.default.createElement('input', { type: 'submit', value: 'Sign Up', className: 'btn btn-default btn-block' })
 	        )
 	      );
 	    }

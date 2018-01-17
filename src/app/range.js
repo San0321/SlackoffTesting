@@ -24,6 +24,12 @@ export default class Inputthis extends Component {
     if(e.target.value) {
 
     }
+    this.range = ["A","A-","B" …];
+
+
+render () {
+  return this.range.map( grade => (<p>${grade}</p> <input type="text" name=${grade} onChange={this.handleChange.bind(this)}/>));
+}
     */
   	this.setState({value: e.target.value});
 

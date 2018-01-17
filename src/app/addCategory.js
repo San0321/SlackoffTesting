@@ -48,19 +48,18 @@ export default class Category extends React.Component {
     let refForPercentage = 'percentage_' + this.props.name;
     let refForGrade = 'grade_' + this.props.name;
     return (
-      <div>
-        <span>
-          <button className="btn btn-danger btn-sm" id={idForDelete} onClick={() => this.props.deleteButton(this.props.name)}>
-            <span className="glyphicon glyphicon-minus"></span>
-          </button>
-        </span>
-        <label>{this.props.name}</label>
+      <div className="row">
+        <button className="btn btn-danger btn-sm col-lg-1" id={idForDelete} onClick={() => this.props.deleteButton(this.props.name)}>
+          <span className="glyphicon glyphicon-minus"></span>
+        </button>
+        <label className="col-lg-5">{this.props.name}</label>
         <input
           type="text"
           id={refForPercentage}
           ref={refForPercentage}
           onChange={() => this.props.percentage(this)}
           placeholder="Percentage (without the symbol)"
+          className="col-lg-3"
         />
         <input
           type="text"
@@ -68,6 +67,7 @@ export default class Category extends React.Component {
           ref={refForGrade}
           onChange={() => this.props.grade(this)}
           placeholder="My Grade"
+          className="col-lg-3"
         />
       </div>
     );

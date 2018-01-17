@@ -173,7 +173,7 @@ export default class Category extends Component {
       this.state.result += '% ';
       temp += perGrade;
     }
-    this.state.result += 'Your Overall grade is Currently ' + temp + '%';
+    this.state.result += ' \n Your Overall grade is Currently ' + temp + '%';
 
     /*
       Participation : %
@@ -202,6 +202,7 @@ export default class Category extends Component {
   render() {
     return (
       // initial state
+      // css row
       <div>
         {this.state.id.map(item => (
           <AddCategory
@@ -215,6 +216,7 @@ export default class Category extends Component {
             reset={this.props.emailAccount.reset}
           />
         ))}
+      <div className="text-center">
         <input type="text" ref="category" onChange={this.addCateoryChange.bind(this)} placeholder="Category" />
         <button className="btn btn-success btn-sm" id="addCategoryButton" name="add" onClick={this.addCategoryClick.bind(this)}>
           <span className="glyphicon glyphicon-plus"></span>
@@ -222,8 +224,9 @@ export default class Category extends Component {
         <button className="btn btn-default" id="submitButton" name="submit" onClick={this.submitCalc.bind(this)}>
           Calculate
         </button>
+      </div>
         <p>{this.state.result}</p>
-        <button className="btn btn-info" onClick={this.saveGrade.bind(this)}>Save</button>
+        <button className="btn btn-info text-center" onClick={this.saveGrade.bind(this)}>Save</button>
       </div>
     );
   }

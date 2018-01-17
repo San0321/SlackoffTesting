@@ -2,6 +2,7 @@
 
 This web-application is used to check my current grade by setting the percentage of each part of grade and the actual grade. 
 
+Made by San Kang
 
 ## Tools / Languages
 

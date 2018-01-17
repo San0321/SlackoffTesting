@@ -186,6 +186,7 @@ export default class Category extends Component {
 
   saveGrade() {
     let toBeSaved = this.state;
+    toBeSaved.result = "";
     firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
         firebase
@@ -202,7 +203,6 @@ export default class Category extends Component {
   render() {
     return (
       // initial state
-      // css row
       <div className="row">
         {this.state.id.map(item => (
           <AddCategory
@@ -216,17 +216,20 @@ export default class Category extends Component {
             reset={this.props.emailAccount.reset}
           />
         ))}
-      <div className="text-center">
-        <input type="text" ref="category" onChange={this.addCateoryChange.bind(this)} placeholder="Category" />
-        <button className="btn btn-success btn-sm" id="addCategoryButton" name="add" onClick={this.addCategoryClick.bind(this)}>
-          <span className="glyphicon glyphicon-plus"></span>
-        </button>
-        <button className="btn btn-default" id="submitButton" name="submit" onClick={this.submitCalc.bind(this)}>
-          Calculate
-        </button>
-      </div>
-        <p>{this.state.result}</p>
-        <button className="btn btn-outline-info text-center btn-lg" onClick={this.saveGrade.bind(this)}>Save</button>
+        <div className="row">
+          <input className="col-lg-10" type="text" ref="category" onChange={this.addCateoryChange.bind(this)} placeholder="Category" />
+          <button className="btn btn-success btn-sm col-lg-1" id="addCategoryButton" name="add" onClick={this.addCategoryClick.bind(this)}>
+            <span className="glyphicon glyphicon-plus"></span>
+          </button>
+          <button className="btn btn-default col-lg-1" id="submitButton" name="submit" onClick={this.submitCalc.bind(this)}>
+            Calculate
+          </button>
+        </div>
+        <div className="row">
+          <p className="row">{this.state.result}</p>
+          <button className="btn btn-outline-info text-center btn-block" onClick={this.saveGrade.bind(this)}>Save</button>
+        </div>
+        
       </div>
     );
   }

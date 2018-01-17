@@ -218,10 +218,11 @@ export default class Popup extends Component {
               style={customStyles}
               contentLabel="Example Modal"
             >
-              <button onClick={this.openSignIn.bind(this)}> Sign-In Tab </button>
-              <button onClick={this.openSignUp.bind(this)}> Sign-Up Tab </button>
+            <div className="btn-group btn-group-toggle text-center">
+              <button className="btn btn-secondary" type onClick={this.openSignIn.bind(this)}> Sign-In Tab </button>
+              <button className="btn btn-secondary" onClick={this.openSignUp.bind(this)}> Sign-Up Tab </button>
+            </div>
               <Wrapper signIn={this.state.signIn} checking={this.checkLogin.bind(this)} />
-              <button onClick={this.closeModal}>close</button>
             </Modal>
           </div>
         )}
@@ -231,5 +232,5 @@ export default class Popup extends Component {
 }
 
 /*
-
+<button onClick={this.closeModal}>close</button>
  */

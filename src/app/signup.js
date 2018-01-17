@@ -64,20 +64,25 @@ export default class SignUp extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <label>
-            ID
-            <input type="text" id="id" onChange={this.handleChangeId.bind(this)} value={this.state.username} />
-          </label>
-          <label>
-            Password
-            <input
-              type="password"
-              id="password"
-              onChange={this.handleChangePw.bind(this)}
-              value={this.state.password}
-            />
-          </label>
-          <input type="submit" value="Sign Up" />
+          <div className="form-group">
+            <label>
+              Email address
+            </label>
+              <input type="text" id="id" className="form-control" onChange={this.handleChangeId.bind(this)} value={this.state.username} />
+          </div>
+          <div className="form-group">
+            <label>
+              Password
+            </label>
+              <input
+                type="password"
+                id="password"
+                onChange={this.handleChangePw.bind(this)}
+                value={this.state.password}
+                className="form-control"
+              />
+            </div>
+          <input type="submit" value="Sign Up" className="btn btn-default btn-block" />
         </form>
       </div>
     );

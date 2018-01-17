@@ -118,20 +118,26 @@ export default class Login extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit.bind(this)}>
+          <div className="form-group">
           <label>
-            ID
-            <input type="text" id="id" onChange={this.handleChangeId.bind(this)} value={this.state.username} />
+            Email address
           </label>
+          <input type="text" className="form-control" id="id" onChange={this.handleChangeId.bind(this)} value={this.state.username} />
+          </div>
+	          
+          <div className="form-group">
           <label>
             Password
+          </label>
             <input
               type="password"
               id="password"
               onChange={this.handleChangePw.bind(this)}
               value={this.state.password}
+              className="form-control"
             />
-          </label>
-          <input type="submit" value="Login" />
+          </div>
+          <input type="submit" className="btn btn-default btn-block" value="Login" />
         </form>
       </div>
     );

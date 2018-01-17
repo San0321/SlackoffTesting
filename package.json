@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "express": "^4.16.2",
-    "firebase": "^4.8.1",
+    "firebase": "^4.8.2",
     "react": "^15.6.2",
     "react-dom": "^15.6.2",
     "react-modal": "^3.1.10",

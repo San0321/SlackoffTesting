@@ -15,7 +15,7 @@ server.get('/', (req, res) => {
 
   res.send(template({
     body: appString,
-    title: 'Hello World from the server',
+    title: 'How Much Can I Slack Off?',
     initialState: JSON.stringify(initialState)
   }));
 });

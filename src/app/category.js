@@ -226,7 +226,9 @@ export default class Category extends Component {
           </button>
         </div>
         <div className="row">
-          <p className="row">{this.state.result}</p>
+          <div className="blockquote">
+            <p className="mb-0">{this.state.result}</p>
+          </div>
           <button className="btn btn-outline-info text-center btn-block" onClick={this.saveGrade.bind(this)}>Save</button>
         </div>
         

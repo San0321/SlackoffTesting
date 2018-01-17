@@ -7,7 +7,8 @@ export default class SignUp extends Component {
     super();
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      error:''
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -32,6 +33,7 @@ export default class SignUp extends Component {
         .createUserWithEmailAndPassword(email, password)
         .then(function() {
           // change the button layout
+          work.setState({error: ""});
           work.props.checking();
         })
         .catch(function(error) {
@@ -43,6 +45,7 @@ export default class SignUp extends Component {
             alert(errorMessage);
           }
           console.log(error);
+          work.setState({error: errorMessage});
         });
     };
     setUser(this, this.state.username, this.state.password);
@@ -84,6 +87,11 @@ export default class SignUp extends Component {
               />
             </div>
           <input type="submit" value="Sign Up" className="btn btn-default btn-block" />
+          {this.state.error != "" ?
+          <div className="alert alert-danger">
+            {this.state.error}
+          </div> : <div/>
+        }
         </form>
       </div>
     );

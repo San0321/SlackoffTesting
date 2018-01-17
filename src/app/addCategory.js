@@ -10,13 +10,13 @@ export default class Category extends React.Component {
   }
   */
   componentWillReceiveProps() {
-    console.log('When I am being called?');
+    // console.log('When I am being called?');
   }
   componentDidUpdate() {
     if (this.props.data.loaded) {
       // for (let i = 0; i < this.props.categories.length; i++) {
       // let this.refs
-      console.log(this.props.name);
+     // console.log(this.props.name);
       let percentage = this.refs['percentage_' + this.props.name];
       let grade = this.refs['grade_' + this.props.name];
       percentage.value = this.props.data.portion[this.props.categories.indexOf(this.props.name)];
@@ -34,7 +34,7 @@ export default class Category extends React.Component {
     if (this.props.data.loaded) {
       // for (let i = 0; i < this.props.categories.length; i++) {
       // let this.refs
-      console.log(this.props.name);
+     // console.log(this.props.name);
       let percentage = this.refs['percentage_' + this.props.name];
       let grade = this.refs['grade_' + this.props.name];
       percentage.value = this.props.data.portion[this.props.categories.indexOf(this.props.name)];

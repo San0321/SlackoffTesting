@@ -22361,9 +22361,13 @@
 	            'div',
 	            { className: 'row' },
 	            _react2.default.createElement(
-	              'p',
-	              { className: 'row' },
-	              this.state.result
+	              'div',
+	              { className: 'blockquote' },
+	              _react2.default.createElement(
+	                'p',
+	                { className: 'mb-0' },
+	                this.state.result
+	              )
 	            ),
 	            _react2.default.createElement(
 	              'button',
@@ -22444,7 +22448,7 @@
 	  _createClass(Category, [{
 	    key: 'componentWillReceiveProps',
 	    value: function componentWillReceiveProps() {
-	      console.log('When I am being called?');
+	      // console.log('When I am being called?');
 	    }
 	  }, {
 	    key: 'componentDidUpdate',
@@ -22452,7 +22456,7 @@
 	      if (this.props.data.loaded) {
 	        // for (let i = 0; i < this.props.categories.length; i++) {
 	        // let this.refs
-	        console.log(this.props.name);
+	        // console.log(this.props.name);
 	        var percentage = this.refs['percentage_' + this.props.name];
 	        var grade = this.refs['grade_' + this.props.name];
 	        percentage.value = this.props.data.portion[this.props.categories.indexOf(this.props.name)];
@@ -22472,7 +22476,7 @@
 	      if (this.props.data.loaded) {
 	        // for (let i = 0; i < this.props.categories.length; i++) {
 	        // let this.refs
-	        console.log(this.props.name);
+	        // console.log(this.props.name);
 	        var percentage = this.refs['percentage_' + this.props.name];
 	        var grade = this.refs['grade_' + this.props.name];
 	        percentage.value = this.props.data.portion[this.props.categories.indexOf(this.props.name)];
@@ -48573,7 +48577,7 @@
 	              onAfterOpen: this.afterOpenModal,
 	              onRequestClose: this.closeModal,
 	              style: customStyles,
-	              contentLabel: 'Example Modal'
+	              contentLabel: 'Login And Sign Up Modal'
 	            },
 	            _react2.default.createElement(
 	              'div',
@@ -50036,7 +50040,8 @@
 
 	    _this.state = {
 	      username: '',
-	      password: ''
+	      password: '',
+	      error: ''
 	    };
 	    return _this;
 	  }
@@ -50104,6 +50109,7 @@
 	      var setUser = function setUser(work, email, password) {
 	        _firebase2.default.auth().signInWithEmailAndPassword(email, password).then(function () {
 	          // change the button layout
+	          work.setState({ error: '' });
 	          work.props.checking();
 	        }).catch(function (error) {
 	          var errorCode = error.code;
@@ -50114,6 +50120,7 @@
 	            alert(errorMessage);
 	          }
 	          console.log(error);
+	          work.setState({ error: errorMessage });
 	        });
 	      };
 	      setUser(this, this.state.username, this.state.password);
@@ -50178,7 +50185,12 @@
 	              className: 'form-control'
 	            })
 	          ),
-	          _react2.default.createElement('input', { type: 'submit', className: 'btn btn-default btn-block', value: 'Login' })
+	          _react2.default.createElement('input', { type: 'submit', className: 'btn btn-default btn-block', value: 'Login' }),
+	          this.state.error != "" ? _react2.default.createElement(
+	            'div',
+	            { className: 'alert alert-danger' },
+	            this.state.error
+	          ) : _react2.default.createElement('div', null)
 	        )
 	      );
 	    }
@@ -50228,7 +50240,8 @@
 
 	    _this.state = {
 	      username: '',
-	      password: ''
+	      password: '',
+	      error: ''
 	    };
 	    _this.handleSubmit = _this.handleSubmit.bind(_this);
 	    return _this;
@@ -50255,6 +50268,7 @@
 	      var setUser = function setUser(work, email, password) {
 	        _firebase2.default.auth().createUserWithEmailAndPassword(email, password).then(function () {
 	          // change the button layout
+	          work.setState({ error: "" });
 	          work.props.checking();
 	        }).catch(function (error) {
 	          var errorCode = error.code;
@@ -50265,6 +50279,7 @@
 	            alert(errorMessage);
 	          }
 	          console.log(error);
+	          work.setState({ error: errorMessage });
 	        });
 	      };
 	      setUser(this, this.state.username, this.state.password);
@@ -50317,7 +50332,12 @@
 	              className: 'form-control'
 	            })
 	          ),
-	          _react2.default.createElement('input', { type: 'submit', value: 'Sign Up', className: 'btn btn-default btn-block' })
+	          _react2.default.createElement('input', { type: 'submit', value: 'Sign Up', className: 'btn btn-default btn-block' }),
+	          this.state.error != "" ? _react2.default.createElement(
+	            'div',
+	            { className: 'alert alert-danger' },
+	            this.state.error
+	          ) : _react2.default.createElement('div', null)
 	        )
 	      );
 	    }

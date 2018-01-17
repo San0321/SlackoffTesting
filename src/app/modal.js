@@ -216,7 +216,7 @@ export default class Popup extends Component {
               onAfterOpen={this.afterOpenModal}
               onRequestClose={this.closeModal}
               style={customStyles}
-              contentLabel="Example Modal"
+              contentLabel="Login And Sign Up Modal"
             >
             <div className="btn-group btn-group-toggle text-center">
               <button className="btn btn-secondary" type onClick={this.openSignIn.bind(this)}> Sign-In Tab </button>
